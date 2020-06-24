@@ -19,6 +19,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "no-unused-vars": "off"
   }
 }
