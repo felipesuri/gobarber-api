@@ -1,6 +1,10 @@
 node_modules/
 dist/
 
+# CONFIG
+
+auth.ts
+
 # ERROR
 
 yarn-error.log
