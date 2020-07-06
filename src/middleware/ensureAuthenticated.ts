@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 
-import authConfig from '../config/auth'
-
 import AppError from '../errors/appError'
 
 interface TokenPayload {
@@ -24,7 +22,7 @@ export default function ensureAnthenticated(
 
   const [, token] = authHeader.split(' ')
 
-  const secret = process.env.SECRET || authConfig.jwt.secret
+  const secret = process.env.SECRET as string
 
   try {
     const decoded = verify(token, secret)
