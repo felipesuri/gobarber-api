@@ -2,8 +2,6 @@ import { getRepository } from 'typeorm'
 import { compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 
-import authConfig from '../config/auth'
-
 import AppError from '../errors/appError'
 
 import User from '../models/User'
@@ -34,10 +32,8 @@ class AuthenticateUserService {
       throw new AppError('Incorrect email/password combination', 401)
     }
 
-    const JWTConfig = authConfig.jwt
-
-    const secret = process.env.SECRET || JWTConfig.secret
-    const expiresIn = process.env.EXPIRES || JWTConfig.expiresIn
+    const secret = process.env.SECRET as string
+    const expiresIn = process.env.EXPIRES
 
     const token = sign({}, secret, {
       subject: user.id,
