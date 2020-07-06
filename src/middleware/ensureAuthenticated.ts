@@ -24,7 +24,7 @@ export default function ensureAnthenticated(
 
   const [, token] = authHeader.split(' ')
 
-  const secret = process.env.PORT || authConfig.jwt.secret
+  const secret = process.env.SECRET || authConfig.jwt.secret
 
   try {
     const decoded = verify(token, secret)
