@@ -9,6 +9,7 @@ import routes from './routes'
 import AppError from '@shared/errors/appError'
 
 import '@shared/infra/typeorm'
+import '@shared/container'
 
 const app = express()
 
