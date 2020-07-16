@@ -7,6 +7,8 @@ import AppError from '@shared/errors/appError'
 import User from '../infra/typeorm/entities/User'
 import iUsersRepository from '../repositories/iUsersRepository'
 
+require('dotenv').config()
+
 interface Request {
   email: string
   password: string
