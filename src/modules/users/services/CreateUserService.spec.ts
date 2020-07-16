@@ -8,13 +8,13 @@ describe('CreateUser', () => {
     const fakeUsersRepository = new FakeUsersRepository()
     const createUser = new CreateUserService(fakeUsersRepository)
 
-    const appointment = await createUser.execute({
+    const user = await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456'
     })
 
-    expect(appointment).toHaveProperty('id')
+    expect(user).toHaveProperty('id')
   })
 
   it('should be not able to create a new user with same email from another', async () => {
