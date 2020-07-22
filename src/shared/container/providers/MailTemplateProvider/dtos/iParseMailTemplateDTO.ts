@@ -3,6 +3,6 @@ interface iTemplateVariables {
 }
 
 export default interface iParseMailTemplateDTO {
-  template: string
+  file: string
   variables: iTemplateVariables
 }
