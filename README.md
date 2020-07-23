@@ -8,7 +8,7 @@
 
 ## Funcionalidades macros da aplicação
 
-- [ ] Recuperação de senha
+- [x] Recuperação de senha
 - [ ] Atualização do perfil
 - [ ] Painel do prestador
 - [ ] Agendamento de serviços
