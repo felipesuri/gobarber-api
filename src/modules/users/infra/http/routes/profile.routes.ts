@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import multer from 'multer'
 
 import ensureAuthenticated from '@modules/users/infra/middleware/ensureAuthenticated'
 
@@ -10,6 +9,7 @@ const profileController = new ProfileController()
 
 profileRouter.use(ensureAuthenticated)
 
+profileRouter.get('/', profileController.show)
 profileRouter.put('/', profileController.update)
 
 export default profileRouter
