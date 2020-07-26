@@ -18,11 +18,13 @@ describe('ListProviders', () => {
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
       date: new Date(2020, 6, 23, 14, 0, 0),
+      user_id: 'non-user',
     })
 
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
       date: new Date(2020, 6, 23, 15, 0, 0),
+      user_id: 'non-user',
     })
 
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
