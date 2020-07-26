@@ -13,14 +13,16 @@ class UsersRepository implements iUsersRepository {
     this.ormRepository = getRepository(User)
   }
 
-  public async findAllProviders({ except_user_id }: iFindAllProvidersDTO): Promise<User[]> {
+  public async findAllProviders({
+    except_user_id,
+  }: iFindAllProvidersDTO): Promise<User[]> {
     let users: User[]
 
     if (except_user_id) {
       users = await this.ormRepository.find({
         where: {
-          id: Not(except_user_id)
-        }
+          id: Not(except_user_id),
+        },
       })
     } else {
       users = await this.ormRepository.find()
@@ -37,7 +39,7 @@ class UsersRepository implements iUsersRepository {
 
   public async findByMail(email: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
-      where: { email }
+      where: { email },
     })
 
     return user

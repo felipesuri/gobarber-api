@@ -16,6 +16,6 @@ export default {
       const fileName = `${filehash}-${file.originalname}`
 
       return callback(null, fileName)
-    }
-  })
+    },
+  }),
 }

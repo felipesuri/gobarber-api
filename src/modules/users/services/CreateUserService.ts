@@ -7,8 +7,8 @@ import iUsersRepository from '../repositories/iUsersRepository'
 import iHashProvider from '../providers/HashProvider/models/iHashProvider'
 
 interface Request {
-  name: string;
-  email: string;
+  name: string
+  email: string
   password: string
 }
 
@@ -20,7 +20,7 @@ class CreateUserService {
 
     @inject('HashProvider')
     private hashProvider: iHashProvider
-  ) { }
+  ) {}
 
   public async execute({ name, email, password }: Request): Promise<User> {
     const checkUserExists = await this.usersRepository.findByMail(email)
@@ -34,7 +34,7 @@ class CreateUserService {
     const user = this.usersRepository.create({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     })
 
     return user

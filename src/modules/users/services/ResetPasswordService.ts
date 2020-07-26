@@ -24,7 +24,7 @@ class ResetPasswordService {
 
     @inject('HashProvider')
     private hashProvider: iHashProvider
-  ) { }
+  ) {}
 
   public async execute({ token, password }: Request): Promise<void> {
     const userToken = await this.userTokensRepository.findByToken(token)

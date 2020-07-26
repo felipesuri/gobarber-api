@@ -22,9 +22,15 @@ class UpdateProfileService {
 
     @inject('HashProvider')
     private hashProvider: iHashProvider
-  ) { }
+  ) {}
 
-  public async execute({ name, email, user_id, password, old_password }: Request): Promise<User> {
+  public async execute({
+    name,
+    email,
+    user_id,
+    password,
+    old_password,
+  }: Request): Promise<User> {
     const user = await this.usersRepository.findById(user_id)
 
     if (!user) {
@@ -45,7 +51,10 @@ class UpdateProfileService {
     }
 
     if (password && old_password) {
-      const checkOldPassword = await this.hashProvider.compareHash(old_password, user.password)
+      const checkOldPassword = await this.hashProvider.compareHash(
+        old_password,
+        user.password
+      )
 
       if (!checkOldPassword) {
         throw new AppError('Old password does not match')

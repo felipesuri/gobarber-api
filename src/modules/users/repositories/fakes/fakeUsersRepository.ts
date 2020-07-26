@@ -9,7 +9,9 @@ import User from '@modules/users/infra/typeorm/entities/User'
 class fakeUsersRepository implements iUsersRepository {
   private users: User[] = []
 
-  public async findAllProviders({ except_user_id }: iFindAllProvidersDTO): Promise<User[]> {
+  public async findAllProviders({
+    except_user_id,
+  }: iFindAllProvidersDTO): Promise<User[]> {
     let { users } = this
 
     if (except_user_id) {

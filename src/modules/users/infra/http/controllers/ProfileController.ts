@@ -29,7 +29,7 @@ export default class ForgotPasswordController {
       name,
       email,
       old_password,
-      password
+      password,
     })
 
     delete user.password

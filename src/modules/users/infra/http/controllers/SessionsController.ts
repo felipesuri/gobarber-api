@@ -12,7 +12,7 @@ export default class SessionsController {
 
     const { user, token } = await authenticateUser.execute({
       email,
-      password
+      password,
     })
 
     delete user.password

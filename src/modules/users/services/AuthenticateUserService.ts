@@ -27,7 +27,7 @@ class AuthenticateUserService {
 
     @inject('HashProvider')
     private hashProvider: iHashProvider
-  ) { }
+  ) {}
 
   public async execute({ email, password }: Request): Promise<Response> {
     const user = await this.usersRepository.findByMail(email)
@@ -47,7 +47,7 @@ class AuthenticateUserService {
 
     const token = sign({}, secret, {
       subject: user.id,
-      expiresIn
+      expiresIn,
     })
 
     return { user, token }

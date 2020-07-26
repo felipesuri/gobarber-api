@@ -30,7 +30,7 @@ export default function ensureAuthenticated(
     const { sub } = decoded as TokenPayload
 
     request.user = {
-      id: sub
+      id: sub,
     }
 
     return next()

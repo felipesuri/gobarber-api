@@ -20,26 +20,31 @@ export default class EtherealMailProvider implements iMailProvider {
         secure: account.smtp.secure,
         auth: {
           user: account.user,
-          pass: account.pass
-        }
+          pass: account.pass,
+        },
       })
 
       this.client = transporter
     })
   }
 
-  public async sendMail({ to, subject, from, templateData }: iSendMailDTO): Promise<void> {
+  public async sendMail({
+    to,
+    subject,
+    from,
+    templateData,
+  }: iSendMailDTO): Promise<void> {
     const message = await this.client.sendMail({
       from: {
         name: from?.name || 'Equipe GoBarber',
-        address: from?.email || 'equipe@gobarber.com.br'
+        address: from?.email || 'equipe@gobarber.com.br',
       },
       to: {
         name: to.name,
-        address: to.email
+        address: to.email,
       },
       subject,
-      html: await this.mailTemplateProvider.parse(templateData)
+      html: await this.mailTemplateProvider.parse(templateData),
     })
 
     console.log('Message sent: %s', message.messageId)

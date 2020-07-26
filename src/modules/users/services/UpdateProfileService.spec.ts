@@ -19,13 +19,13 @@ describe('UpdateProfile', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     const updatedUser = await updateProfile.execute({
       user_id: user.id,
       name: 'John Tre',
-      email: 'johntre@gobarber.com.br'
+      email: 'johntre@gobarber.com.br',
     })
 
     expect(updatedUser.name).toBe('John Tre')
@@ -36,20 +36,20 @@ describe('UpdateProfile', () => {
     await fakeUsersRepository.create({
       name: 'Equipe GoBarber',
       email: 'equipe@gobarber.com.br',
-      password: '123456'
+      password: '123456',
     })
 
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     await expect(
       updateProfile.execute({
         user_id: user.id,
         name: 'John Tre Equipe',
-        email: 'equipe@gobarber.com.br'
+        email: 'equipe@gobarber.com.br',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -58,7 +58,7 @@ describe('UpdateProfile', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     const updatedUser = await updateProfile.execute({
@@ -66,7 +66,7 @@ describe('UpdateProfile', () => {
       name: 'John Tre',
       email: 'johntre@gobarber.com.br',
       old_password: '123456',
-      password: '123123'
+      password: '123123',
     })
 
     expect(updatedUser.password).toBe('123123')
@@ -76,7 +76,7 @@ describe('UpdateProfile', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     await expect(
@@ -84,7 +84,7 @@ describe('UpdateProfile', () => {
         user_id: user.id,
         name: 'John Tre',
         email: 'johntre@gobarber.com.br',
-        password: '123123'
+        password: '123123',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -93,7 +93,7 @@ describe('UpdateProfile', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     await expect(
@@ -102,7 +102,7 @@ describe('UpdateProfile', () => {
         name: 'John Tre',
         email: 'johntre@gobarber.com.br',
         old_password: '112233',
-        password: '123123'
+        password: '123123',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -112,7 +112,7 @@ describe('UpdateProfile', () => {
       updateProfile.execute({
         user_id: 'non-existing-user-id',
         name: 'non',
-        email: 'non@non.com'
+        email: 'non@non.com',
       })
     ).rejects.toBeInstanceOf(AppError)
   })

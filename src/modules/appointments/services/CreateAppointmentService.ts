@@ -17,7 +17,7 @@ class CreateAppointmentService {
   constructor(
     @inject('AppointmentsRepository')
     private appointmentsRepository: iAppointmentsRepository
-  ) { }
+  ) {}
 
   public async execute({ date, provider_id }: Request): Promise<Appointment> {
     const appointmentDate = startOfHour(date)
@@ -32,7 +32,7 @@ class CreateAppointmentService {
 
     const appointment = await this.appointmentsRepository.create({
       provider_id,
-      date: appointmentDate
+      date: appointmentDate,
     })
 
     return appointment

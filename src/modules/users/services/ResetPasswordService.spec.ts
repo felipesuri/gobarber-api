@@ -16,14 +16,18 @@ describe('ResetPassword', () => {
     fakeUserTokensRepository = new FakeUsersTokenRepository()
     fakeHashProvider = new FakeHashProvider()
 
-    resetPassword = new ResetPasswordService(fakeUsersRepository, fakeUserTokensRepository, fakeHashProvider)
+    resetPassword = new ResetPasswordService(
+      fakeUsersRepository,
+      fakeUserTokensRepository,
+      fakeHashProvider
+    )
   })
 
   it('should be able to reset the password', async () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     const { token } = await fakeUserTokensRepository.generate(user.id)
@@ -32,7 +36,7 @@ describe('ResetPassword', () => {
 
     await resetPassword.execute({
       password: '123123',
-      token
+      token,
     })
 
     const updateUser = await fakeUsersRepository.findById(user.id)
@@ -45,7 +49,7 @@ describe('ResetPassword', () => {
     await expect(
       resetPassword.execute({
         token: 'non-existing-token',
-        password: '123456'
+        password: '123456',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -56,7 +60,7 @@ describe('ResetPassword', () => {
     await expect(
       resetPassword.execute({
         token,
-        password: '123456'
+        password: '123456',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -65,7 +69,7 @@ describe('ResetPassword', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     const { token } = await fakeUserTokensRepository.generate(user.id)
@@ -79,7 +83,7 @@ describe('ResetPassword', () => {
     await expect(
       resetPassword.execute({
         password: '123123',
-        token
+        token,
       })
     ).rejects.toBeInstanceOf(AppError)
   })

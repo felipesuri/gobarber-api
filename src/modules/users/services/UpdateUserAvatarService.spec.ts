@@ -12,19 +12,22 @@ describe('UpdateUserAvatar', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository()
     fakeStorageProvider = new FakeStorageProvider()
-    updateUserAvatar = new UpdateUserAvatarService(fakeUsersRepository, fakeStorageProvider)
+    updateUserAvatar = new UpdateUserAvatarService(
+      fakeUsersRepository,
+      fakeStorageProvider
+    )
   })
 
   it('should be able to update a user avatar', async () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     await updateUserAvatar.execute({
       user_id: user.id,
-      avatarFilename: 'avatar.png'
+      avatarFilename: 'avatar.png',
     })
 
     expect(user.avatar).toBe('avatar.png')
@@ -34,7 +37,7 @@ describe('UpdateUserAvatar', () => {
     await expect(
       updateUserAvatar.execute({
         user_id: 'non-existing-user',
-        avatarFilename: 'avatar.png'
+        avatarFilename: 'avatar.png',
       })
     ).rejects.toBeInstanceOf(AppError)
   })
@@ -45,17 +48,17 @@ describe('UpdateUserAvatar', () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     await updateUserAvatar.execute({
       user_id: user.id,
-      avatarFilename: 'avatar.png'
+      avatarFilename: 'avatar.png',
     })
 
     await updateUserAvatar.execute({
       user_id: user.id,
-      avatarFilename: 'avatar2.png'
+      avatarFilename: 'avatar2.png',
     })
 
     expect(deleteFile).toHaveBeenCalledWith('avatar.png')

@@ -12,7 +12,7 @@ export default class ResetPasswordController {
 
     await resetPassword.execute({
       password,
-      token
+      token,
     })
 
     return response.status(204).json()
