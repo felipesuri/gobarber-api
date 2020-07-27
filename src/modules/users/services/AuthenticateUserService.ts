@@ -2,6 +2,7 @@ import { sign } from 'jsonwebtoken'
 import { injectable, inject } from 'tsyringe'
 
 import AppError from '@shared/errors/appError'
+import auth from '@config/auth'
 
 import User from '../infra/typeorm/entities/User'
 import iUsersRepository from '../repositories/iUsersRepository'
@@ -42,8 +43,7 @@ class AuthenticateUserService {
       throw new AppError('Incorrect email/password combination', 401)
     }
 
-    const secret = process.env.SECRET as string
-    const expiresIn = process.env.EXPIRES
+    const { expiresIn, secret } = auth.jwt
 
     const token = sign({}, secret, {
       subject: user.id,
