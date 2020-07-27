@@ -10,7 +10,7 @@
 
 - [x] Recuperação de senha
 - [x] Atualização do perfil
-- [ ] Painel do prestador
+- [x] Painel do prestador
 - [ ] Agendamento de serviços
 
 ## Funcionalidades micro da aplicação
