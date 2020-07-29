@@ -1,16 +1,18 @@
-import AppError from '@shared/errors/appError'
-
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository'
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/fakeCacheProvider'
 import ListProviderAppointmentsService from './ListProviderAppointmentsService'
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository
 let listProviderAppointmentsService: ListProviderAppointmentsService
+let fakeCacheProvider: FakeCacheProvider
 
 describe('ListProviders', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository()
+    fakeCacheProvider = new FakeCacheProvider()
     listProviderAppointmentsService = new ListProviderAppointmentsService(
-      fakeAppointmentsRepository
+      fakeAppointmentsRepository,
+      fakeCacheProvider
     )
   })
 
