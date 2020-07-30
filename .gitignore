@@ -12,3 +12,7 @@ ormconfig.json
 # ERROR
 
 yarn-error.log
+
+# TEST
+
+coverage/
