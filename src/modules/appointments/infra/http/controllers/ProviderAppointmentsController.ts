@@ -10,13 +10,13 @@ export default class ProviderAppointmentsController {
 
     const listProviderAppointments = container.resolve(ListProviderAppointmentsService)
 
-    const AppointmentsRepository = await listProviderAppointments.execute({
+    const appointments = await listProviderAppointments.execute({
       provider_id,
       month: Number(month),
       year: Number(year),
       day: Number(day),
     })
 
-    return response.json(AppointmentsRepository)
+    return response.json(appointments)
   }
 }
