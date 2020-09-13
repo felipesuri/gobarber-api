@@ -5,6 +5,7 @@ import AppError from '@shared/errors/appError'
 import User from '../infra/typeorm/entities/User'
 import iUsersRepository from '../repositories/iUsersRepository'
 import iStorageProvider from '@shared/container/providers/StorageProvider/models/iStorageProvider'
+import iCacheProvider from '@shared/container/providers/CacheProvider/models/iCacheProvider'
 
 interface Request {
   user_id: string
@@ -18,7 +19,10 @@ class UpdateUserAvatarService {
     private usersRepository: iUsersRepository,
 
     @inject('StorageProvider')
-    private storageProvider: iStorageProvider
+    private storageProvider: iStorageProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: iCacheProvider,
   ) {}
 
   public async execute({ user_id, avatarFilename }: Request): Promise<User> {
@@ -35,6 +39,8 @@ class UpdateUserAvatarService {
     const filename = await this.storageProvider.saveFile(avatarFilename)
 
     user.avatar = filename
+
+    await this.cacheProvider.invalidatePrefix('providers-list')
 
     await this.usersRepository.update(user)
 
