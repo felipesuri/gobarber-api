@@ -8,7 +8,6 @@ on:
   push:
     branches: [ main ]
     
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +18,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
         with:
-          node_version: 12.x
+          nodeversion: 12.x
           
       # Instalar dependências NPM/YARN
       - name: Install dependencies
