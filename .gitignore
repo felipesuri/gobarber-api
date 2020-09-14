@@ -7,7 +7,7 @@ tmp/*
 # CONFIG
 
 .env
-ormconfig.json
+ormconfig.js
 
 # ERROR
 
